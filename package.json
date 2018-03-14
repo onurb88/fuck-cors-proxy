@@ -1,0 +1,16 @@
+{
+  "name": "fuck-cors-proxy",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": "NA",
+  "author": "Wesley Bliss <wesley.bliss@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+      "start": "node src/index.js"
+  },
+  "dependencies": {
+    "restify": "^6.3.4",
+    "restify-cors-middleware": "^1.1.0"
+  }
+}
