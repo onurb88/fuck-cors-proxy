@@ -1,8 +1,9 @@
 {
   "name": "fuck-cors-proxy",
   "version": "1.0.0",
+  "description": "Extremely basic proxy to get around CORS issues.",
   "main": "src/index.js",
-  "repository": "NA",
+  "repository": "git@github.com:wesleybliss/fuck-cors-proxy.git",
   "author": "Wesley Bliss <wesley.bliss@gmail.com>",
   "license": "MIT",
   "scripts": {
