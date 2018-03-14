@@ -1,29 +1,21 @@
-const fs = require('fs')
-const path = require('path')
-const app = require('./app')
-const { httpGet, httpPut, httpPost, httpDelete } = require('./lib/utils')
+'use strict'
 
-const proxyParse = req => {
-    
-    let { host, path } = req.params
-    let secure = false
-    
-    console.log('PROXY\n', 'HOST', host, '\n', 'PATH', path)
-    
-    if (host.startsWith('http://'))
-        host = host.replace('http://', '')
-    
-    if (host.startsWith('https://')) {
-        host = host.replace('https://', '')
-        secure = true
-    }
-    
-    // FUCK self-signed certs
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
-    
-    return { host, path, secure }
-    
-}
+const app = require('./app')
+const {
+    proxyParse,
+    httpGet,
+    httpPut,
+    httpPost,
+    httpDelete
+} = require('./lib/utils')
+const helpMessage = require('./lib/help-message.json')
+
+app.get('/', (req, res) => {
+    res.send(200, {
+        name: app.name,
+        help: helpMessage
+    })
+})
 
 app.get(`/:host/:path`, (req, res) => {
     const { host, path, secure } = proxyParse(req)

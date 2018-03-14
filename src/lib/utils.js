@@ -3,6 +3,28 @@
 const http = require('http')
 const https = require('https')
 
+const proxyParse = req => {
+    
+    let { host, path } = req.params
+    let secure = false
+    
+    console.log('PROXY\n', 'HOST', host, '\n', 'PATH', path)
+    
+    if (host.startsWith('http://'))
+        host = host.replace('http://', '')
+    
+    if (host.startsWith('https://')) {
+        host = host.replace('https://', '')
+        secure = true
+    }
+    
+    // FUCK self-signed certs
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
+    
+    return { host, path, secure }
+    
+}
+
 const httpReq = (method, host, path, secure, data) => {
     
     return new Promise((resolve, reject) => {
@@ -52,6 +74,7 @@ const httpPut = (host, path, secure, data) => httpReq('PUT', host, path, secure,
 const httpPost = (host, path, secure, data) => httpReq('POST', host, path, secure, data)
 const httpDel = (host, path, secure) => httpReq('DELETE', host, path, secure)
 
+module.exports.proxyParse = proxyParse
 module.exports.httpGet = httpGet
 module.exports.httpPut = httpPut
 module.exports.httpPost = httpPost

@@ -5,7 +5,6 @@
   "repository": "NA",
   "author": "Wesley Bliss <wesley.bliss@gmail.com>",
   "license": "MIT",
-  "private": false,
   "scripts": {
       "start": "node src/index.js"
   },

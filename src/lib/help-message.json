@@ -1,0 +1,17 @@
+{
+    "Description": "Extremely basic proxy to get around CORS issues.",
+    "Usage": [
+        "curl <this-domain>/<target-domain>/<target-path>"
+    ],
+    "Example": [
+        "",
+        "You want to hit this URL:",
+        "https://maps.googleapis.com/maps/api/place/textsearch/json?somekey=somevalue",
+        "",
+        "So you hit this instead:",
+        "const host = encodeURIComponent('https://maps.googleapis.com')",
+        "const path = encodeURIComponent('/maps/api/place/textsearch/json?somekey=somevalue')",
+        "someAjaxHelper.request(`https://fuck-cors.herokuapp.com/${host}/${path}`)"
+    ],
+    "Found this useful?": "Good. Buy a beer & pour it out for circumventing web security."
+}
